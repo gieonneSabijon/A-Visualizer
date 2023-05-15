@@ -41,6 +41,11 @@ function createMaze(){
 
 function selectTool(i){
     tool = i;
+    var tools = document.querySelectorAll(".tool_button");
+    for (let j = 0; j < tools.length; j++){
+        tools[j].classList.remove("active_tool");
+    }
+    tools[i].classList.add("active_tool");
 }
 
 function addListeners(){
@@ -53,6 +58,19 @@ function addListeners(){
             editNode(row, column);
 
         });
+    }
+}
+
+function clearMaze(){
+    var nodes = document.querySelectorAll(".maze_node");
+    for (let i = 0; i < nodes.length; i++){
+        nodes[i].classList.remove("wall");
+        nodes[i].classList.remove("start");
+        nodes[i].classList.remove("end");
+
+        if (!nodes[i].classList.contains("walkable")){
+            nodes[i].classList.add("walkable");
+        }
     }
 }
 

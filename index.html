@@ -6,6 +6,8 @@
         <title>A* Algorithm Visualizer</title>
         <link rel="stylesheet" href="Styles/styles.css">
         <script src="Scripts/main.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
     <body onload="onLoad()">
         <div class="vert_wrapper body_wrapper">
@@ -39,31 +41,43 @@
                             
                         </table>
                     </div>
-                    <div class="hor_wrapper execute_wrapper">
-                        <button onclick="executeAlgorithm()">
-                            Execute
-                        </button>
+                    <div class="hor_wrapper maze_button_wrapper">
+                        <div class="hor_wrapper clear_wrapper">
+                            <button onclick="clearMaze()">
+                                Clear
+                            </button>
+                        </div>
+                        <div class="hor_wrapper execute_wrapper">
+                            <button onclick="executeAlgorithm()">
+                                Execute
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hor_wrapper error_wrapper">
+                        <div class="error_box">
+                            <p><span class="material-symbols-outlined">error</span> Path Not Found Error</p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="hor_wrapper toolbar">
                     <div class="walkable_wrapper">
-                        <button onclick="selectTool(0)">
+                        <button class="tool_button walkable_button active_tool" onclick="selectTool(0)">
                             Walkable
                         </button>
                     </div>
                     <div class="wall_wrapper">
-                        <button onclick="selectTool(1)">
+                        <button class="tool_button wall_button" onclick="selectTool(1)">
                             Wall
                         </button>
                     </div>
-                    <div class="start_wrapper" onclick="selectTool(2)"> 
-                        <button>
+                    <div class="start_wrapper"> 
+                        <button class="tool_button start_button" onclick="selectTool(2)">
                             Start
                         </button>
                     </div>
-                    <div class="end_wrapper" onclick="selectTool(3)">
-                        <button>
+                    <div class="end_wrapper">
+                        <button class="tool_button end_button" onclick="selectTool(3)">
                             End
                         </button>
                     </div>

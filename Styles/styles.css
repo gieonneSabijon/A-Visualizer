@@ -3,6 +3,40 @@
     padding: 0;
 }
 
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+    vertical-align: top;
+}
+
+input {
+    text-align: center;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    padding: 3px 10px; 
+    border: solid 3px;
+    border-color:  #8f99d9;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+button:active {
+    background-color: #8f99d9;
+    transform: translateY(4px);
+}
+
 .hor_wrapper, .vert_wrapper {
     display: flex;
 }
@@ -22,19 +56,32 @@
 }
 
 .header_wrapper {
-    margin-top: 3%;
+    background-color: #8f99d9;
+    padding-top: 1%;
     justify-content: center;
 }
 
 .main_wrapper {
-    margin: 3% 0px;
     flex: 1;
     max-height: 100%;
     overflow: auto;
 }
 
+.settings_bar, .maze_wrapper > div{
+    margin: 1% 0px;
+}
+
+.toolbar {
+    margin: 5% 0px;
+}
+
+.size_bar > div, .submit_bar, .maze_button_wrapper > div, .toolbar > div {
+    margin: 0px 5px;
+}
+
 .footer_wrapper {
-    margin-bottom: 3%;
+    background-color: #8f99d9;
+    padding-bottom: 1%;
     justify-content: center;
 }
 
@@ -55,8 +102,22 @@
     justify-content: center;
 }
 
-.execute_wrapper {
-    justify-content: center
+
+.maze_button_wrapper {
+    justify-content: center;
+}
+
+.error_wrapper {
+    justify-content: center;
+}
+
+.error_box {
+    text-align: center;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #a10000;
+    display: block;
+    padding: 5px;
 }
 
 
@@ -82,4 +143,8 @@
 
 .end {
     background-color:  #a10000;
+}
+
+.active_tool {
+    background-color: #8f99d9;
 }
