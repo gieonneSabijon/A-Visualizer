@@ -1,3 +1,6 @@
+class NoPathException(Exception):
+    pass
+
 class Node():
     def __init__(self, parent=None, position=None):
         self.parent = parent
@@ -10,16 +13,18 @@ class Node():
     def __eq__(self, other):
         return self.position == other.position
     
+    def __hash__(self):
+        return hash(self.position)
+    
 def astar(maze, start, end):
     nStart = Node(None, start)
     nEnd = Node(None, end)
     nStart.g = nStart.h = nStart.f = nEnd.g = nEnd.h = nEnd.f= 0
     
     open = []
-    closed = []
+    closed = set()
 
     open.append(nStart)
-
     while len(open) > 0:
         current = open[0]
         currentI = 0
@@ -33,7 +38,7 @@ def astar(maze, start, end):
 
         #Removes the Node from open and puts it into closed
         open.pop(currentI)
-        closed.append(current)
+        closed.add(current)
         
 
         if (current == nEnd): #If the current node reaches the end
@@ -71,9 +76,8 @@ def astar(maze, start, end):
         
 
         for child in children:
-            for closedChild in closed:
-                if child == closedChild:
-                    continue
+            if child in closed:
+                continue
             
             child.g = current.g + 1
             child.h = ((child.position[0] - nEnd.position[0]) ** 2) + ((child.position[1] - nEnd.position[1]) ** 2)
@@ -84,22 +88,18 @@ def astar(maze, start, end):
                     continue
 
             open.append(child)
+    raise NoPathException
 
 def main():
 
-    maze = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    maze = [[0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0]]
 
-    start = (0, 0)
-    end = (7, 6)
+    start = (4, 0)
+    end = (1, 4)
 
     path = astar(maze, start, end)
     print(path)

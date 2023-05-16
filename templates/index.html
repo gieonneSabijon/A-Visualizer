@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>A* Algorithm Visualizer</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='Styles/styles.css') }}">
+        <script type="text/javascript" src="{{ url_for('static',filename='Scripts/main.js') }}"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body onload="onLoad()">
+        <div class="vert_wrapper body_wrapper">
+            <div class="hor_wrapper header_wrapper">
+                <div class="header_label">
+                    <h1>A* Visualizer</h1>
+                </div>
+            </div>
+
+            <div class="vert_wrapper main_wrapper">
+                <div class="hor_wrapper settings_bar">
+                    <div class="hor_wrapper size_bar">
+                        <div class="height_wrapper">
+                            <input class="height_input" placeholder="Height" type="number" min="2" required>
+                        </div>
+                        <div class="width_wrapper">
+                            <input class="width_input" placeholder="Width" type="number" min="2" required>
+                        </div>
+                    </div>
+                    <div class="submit_bar">
+                        <button class="submit_button" onclick="createMaze()">
+                            Create Maze
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="vert_wrapper maze_wrapper">
+                    <div class="hor_wrapper maze">
+                        <table class="maze_table">
+                            
+                        </table>
+                    </div>
+                    <div class="hor_wrapper maze_button_wrapper">
+                        <div class="hor_wrapper clear_wrapper">
+                            <button onclick="clearMaze()">
+                                Clear
+                            </button>
+                        </div>
+                        <div class="hor_wrapper execute_wrapper">
+                            <button onclick="executeAlgorithm()">
+                                Execute
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hor_wrapper error_wrapper">
+                        <div class="error_box hidden">
+                            <p><span class="material-symbols-outlined">error</span> Path Not Found Error</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hor_wrapper toolbar">
+                    <div class="walkable_wrapper">
+                        <button class="tool_button walkable_button active_tool" onclick="selectTool(0)">
+                            Walkable
+                        </button>
+                    </div>
+                    <div class="wall_wrapper">
+                        <button class="tool_button wall_button" onclick="selectTool(1)">
+                            Wall
+                        </button>
+                    </div>
+                    <div class="start_wrapper"> 
+                        <button class="tool_button start_button" onclick="selectTool(2)">
+                            Start
+                        </button>
+                    </div>
+                    <div class="end_wrapper">
+                        <button class="tool_button end_button" onclick="selectTool(3)">
+                            End
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hor_wrapper footer_wrapper">
+                <div class="hor_wrapper info_bar">
+                    <div class="name_wrapper">
+                        <p>Gieonne Sabijon</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
