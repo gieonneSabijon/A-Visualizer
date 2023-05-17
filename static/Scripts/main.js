@@ -31,7 +31,6 @@ function executeAlgorithm(){
         path = []
         for (let i = 0; i < data.length; i++){
             path.push(data[i]);
-            console.log(data[i]);
         }
         showPath(path);
     })
@@ -44,9 +43,27 @@ function showPath(path) {
     }
 }
 
+function toggleDiagonal(){
+    diagonalElement = document.querySelector(".diag_button");
+    if (diagonalElement.classList.contains("active_diag")){
+        diagonalElement.classList.remove("active_diag")
+    }
+    else{
+        diagonalElement.classList.add("active_diag");
+    }
+}
+
 function tableToJson(){
     var maze = [];
     var rows = document.querySelectorAll(".maze_row");
+
+    if (document.querySelector(".diag_button").classList.contains("active_diag")){
+        maze.push("allow");
+    }
+    else {
+        maze.push("deny");
+    }
+
     for (let i = 0; i < rows.length; i++){
         var nodes = rows[i].querySelectorAll('td');
         var currentRow = [];
@@ -55,6 +72,7 @@ function tableToJson(){
         }
         maze.push(currentRow);
     }
+    console.log(JSON.stringify(maze));
     return JSON.stringify(maze);
 }
 

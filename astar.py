@@ -16,7 +16,7 @@ class Node():
     def __hash__(self):
         return hash(self.position)
     
-def astar(maze, start, end):
+def astar(maze, start, end, allowDiagonal="false"):
     nStart = Node(None, start)
     nEnd = Node(None, end)
     nStart.g = nStart.h = nStart.f = nEnd.g = nEnd.h = nEnd.f= 0
@@ -58,7 +58,10 @@ def astar(maze, start, end):
         (-1,  1)(0,  1)(1,  1)
         '''
         #Loop through the adjacent nodes
-        for newPOS in [(-1, -1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)]:
+        adjacentNodes = [(0, -1), (1,  0) , (0,  1), (-1,  0)]
+        if allowDiagonal:
+            adjacentNodes = [(-1, -1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)]
+        for newPOS in adjacentNodes:
             #sets POS by offsetting our current node by the adjacement's position
             nodePOS = (current.position[0] + newPOS[0], current.position[1] + newPOS[1])
 

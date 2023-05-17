@@ -11,8 +11,14 @@ def index():
 def handle_request():
     data = request.get_json()
     maze = []
-    print("----")
+    diagonalAllow = False
     for i in data:
+        if i == "allow" or i == "deny":
+            if i == "allow":
+                diagonalAllow = True
+            else:
+                diagonalAllow = False
+            continue
         row = []
         for j in i:
             if "wall" in j:
@@ -26,7 +32,7 @@ def handle_request():
                 end = tuple(map(int, list(reversed(re.findall(r'[0-9]+', j)))))
         maze.append(row)
     try:
-        path = astar(maze,start, end)
+        path = astar(maze,start, end, diagonalAllow)
         return jsonify(path)
     
     except (NoPathException, UnboundLocalError) as e:

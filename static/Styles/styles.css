@@ -170,7 +170,7 @@ button:active {
     border-color: #a10000;
 }
 
-.active_tool {
+.active_tool, .active_diag{
     background-color: #8f99d9;
     color: white;
 }
