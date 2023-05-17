@@ -147,25 +147,35 @@ button:active {
 
 .maze_node {
     padding: 10px;
+    border: solid 3px;
 }
 
 .walkable {
     background-color: #bebebe;
+    border-color: #bebebe;
 }
 
 .wall {
-    background-color:  #508f92; 
+    background-color:  #7d7d7d; 
+    border-color: #7d7d7d;
 }
 
 .start {
     background-color: #00c208;
+    border-color: #00c208;
 }
 
 .end {
     background-color:  #a10000;
+    border-color: #a10000;
 }
 
 .active_tool {
     background-color: #8f99d9;
     color: white;
+}
+
+.path {
+    border: solid 3px;
+    border-color: #00c208;
 }

@@ -25,14 +25,10 @@ def handle_request():
             elif "end" in j:
                 end = tuple(map(int, list(reversed(re.findall(r'[0-9]+', j)))))
         maze.append(row)
-        print(row)
     try:
         path = astar(maze,start, end)
-
-        print(f'start: {start}')
-        print(f'end: {end}')
-        print(f'path:  {path}')
         return jsonify(path)
+    
     except (NoPathException, UnboundLocalError) as e:
         return jsonify({'error': 'No Path Found'})
     

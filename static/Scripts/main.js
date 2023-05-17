@@ -6,6 +6,11 @@ function onLoad() {
 }
 
 function executeAlgorithm(){
+    existingPath = document.querySelectorAll(".path");
+    for (let i = 0; i < existingPath.length; i++){
+        existingPath[i].classList.remove("path");
+    }
+    
     fetch('/endpoint', {
         method: 'POST',
         headers: {
@@ -28,11 +33,15 @@ function executeAlgorithm(){
             path.push(data[i]);
             console.log(data[i]);
         }
+        showPath(path);
     })
 }
 
 function showPath(path) {
-    
+    for (let i = 0; i < path.length; i++) {
+        var node = document.querySelector('.position-' + path[i][1] + 'x' + path[i][0]);
+        node.classList.add('path');
+    }
 }
 
 function tableToJson(){
@@ -71,6 +80,7 @@ function createMaze(){
             for (var j = 0; j < width; j++){ //Creating Columns
                 var node = row.insertCell(j);
                 var nodeDiv = document.createElement("div");
+                node.classList.add("node_wrapper");
                 nodeDiv.classList.add("maze_node");
                 nodeDiv.classList.add("position-" + j + "x" + i);
                 nodeDiv.classList.add("walkable");
@@ -123,6 +133,7 @@ function clearMaze(){
         nodes[i].classList.remove("wall");
         nodes[i].classList.remove("start");
         nodes[i].classList.remove("end");
+        nodes[i].classList.remove("path")
 
         if (!nodes[i].classList.contains("walkable")){
             nodes[i].classList.add("walkable");
@@ -131,7 +142,7 @@ function clearMaze(){
 }
 
 function editNode(node){
-    if (node.classList.contains("maze_table")){
+    if (node.classList.contains("maze_table") || node.classList.contains("node_wrapper")){
         return 
     }
     node.classList.remove("walkable");
